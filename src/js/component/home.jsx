@@ -62,50 +62,52 @@ const Home = () => {
 			.catch((error) => {
 				return error;
 			});
-
-		const deleteAllTask = () => {
-			if (todos.length > 0) {
-				const updateTodo = [];
-				setTodos(updateTodo);
-			}
-		}
-
-		return (
-			<div className=" text-center container mt-5 ">
-				<h1 className="opacity-25 fs-1">todos</h1>
-				<input className="form-control" placeholder="xxxxx" value={newTodo}
-					onChange={(e) =>
-						setNewTodo(e.target.value)
-					}
-					onKeyDown={(e) => {
-						if (e.code === "Enter") {
-							setNewTodo("");
-							addtask(newTodo)
-						}
-						console.dir(e.code)
-					}}
-				/>
-				{todos.map((todo, index) => {
-					return (<div key={index} className="d-flex container shadow-lg p-3 bg-body-tertiary rounded">
-						<h1 className="me-auto">{todo.label}</h1>
-						<button type="button" className="btn-close mt-2
-					 me-3" aria-label="Close" onClick={() => {
-								console.log(index)
-								let copytodos = [...todos]
-								copytodos.splice(index, 1)
-								console.log(copytodos)
-								setTodos(copytodos)
-								deleteTask(todo.id);
-							}}></button>
-					</div>)
-				})}
-				< div className="footer d-flex fs-5 opacity-50 shadow-lg p-3 bg-body-tertiary rounded" >{todos.length}Tareas</div>
-				<button className="btn btn-danger mt-3" onClick={deleteAllTask}>Clear All Task</button>
-
-			</div >
-
-		);
 	};
+	const deleteAllTask = () => {
+		if (todos.length > 0) {
+			const updateTodo = [];
+			setTodos(updateTodo);
+		}
+	}
 };
+
+
+return (
+	<div className=" text-center container mt-5 ">
+		<h1 className="opacity-25 fs-1">todos</h1>
+		<input className="form-control" placeholder="xxxxx" value={newTodo}
+			onChange={(e) =>
+				setNewTodo(e.target.value)
+			}
+			onKeyDown={(e) => {
+				if (e.code === "Enter") {
+					setNewTodo("");
+					addtask(newTodo)
+				}
+				console.dir(e.code)
+			}}
+		/>
+		{todos.map((todo, index) => {
+			return (<div key={index} className="d-flex container shadow-lg p-3 bg-body-tertiary rounded">
+				<h1 className="me-auto">{todo.label}</h1>
+				<button type="button" className="btn-close mt-2
+					 me-3" aria-label="Close" onClick={() => {
+						console.log(index)
+						let copytodos = [...todos]
+						copytodos.splice(index, 1)
+						console.log(copytodos)
+						setTodos(copytodos)
+						deleteTask(todo.id);
+					}}></button>
+			</div>)
+		})}
+		< div className="footer d-flex fs-5 opacity-50 shadow-lg p-3 bg-body-tertiary rounded" >{todos.length}Tareas</div>
+		<button className="btn btn-danger mt-3" onClick={deleteAllTask}>Clear All Task</button>
+
+	</div >
+
+);
+
+
 
 export default Home;
